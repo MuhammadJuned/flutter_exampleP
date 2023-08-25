@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_creddeck/main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../theme/colors.dart';
 
@@ -120,8 +119,16 @@ class ChangeLanguageDialogState extends State<ChangeLanguage> {
 
   @override
   void initState() {
-    groupSelectedValue = "English";
+    getValue();
     super.initState();
+  }
+
+  getValue() async {
+    var prefs = await SharedPreferences.getInstance();
+    var lang = prefs.getString("Lang")!;
+    setState(() {
+      groupSelectedValue = lang;
+    });
   }
 
   @override

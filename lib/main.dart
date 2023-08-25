@@ -27,10 +27,10 @@ class MyAppState extends State<MyApp> {
     super.initState();
   }
 
-  void getLocale() {
-    setState(() async {
-      var prefs = await SharedPreferences.getInstance();
-      var lang = prefs.getString("Lang")!;
+  void getLocale() async {
+    var prefs = await SharedPreferences.getInstance();
+    var lang = prefs.getString("Lang")!;
+    setState(() {
       _locale = Locale(lang,'');
     });
   }
